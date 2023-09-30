@@ -31,7 +31,7 @@ Your ENV variables will now be injected by default into the base template.<br>
 ```
 
 ## Documentation
-> #### ENV variables<br>
+> #### ENV variables
 > Automatically injected (from your .env file) by `AbstractWebController`:
 
 | ENV variable  | Twig tag              |
@@ -44,9 +44,9 @@ Your ENV variables will now be injected by default into the base template.<br>
 | APP_OG_DESC   | OpenGraph Description |
 | APP_OG_IMG    | OpenGraph Image       |
 
----<br><br>
 
-> #### PHP variables<br>
+
+> #### PHP variables
 > You can override all this variables by passing it to `render()` function
 
 | PHP variable   | Twig tag                        |
@@ -63,9 +63,9 @@ Your ENV variables will now be injected by default into the base template.<br>
 | meta.og_url    | OpenGraph URL                   |
 | meta.og_type   | OpenGraph Type                  |
 
----<br><br>
 
-> #### Defaults<br>
+
+> #### Defaults
 > Those variables are already defined in the Twig template in case you don't pass them<br>
 
 | Twig Tag      | Default value               |
@@ -77,6 +77,7 @@ Your ENV variables will now be injected by default into the base template.<br>
 | OpenGraph URL | Canonical URL               |
 
 
----<br><br>
+
+
 >Feel free to contribute :)
 
