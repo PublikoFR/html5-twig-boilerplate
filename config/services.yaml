@@ -1,0 +1,11 @@
+parameters:
+    app_lang: "fr"
+    app_name: "My App Name"
+    app_desc: "My App Desc"
+    app_author: "Publiko"
+    app_author_url: "https://www.publiko.fr"
+    app_og_title: '%app_name%'
+    app_og_desc: '%app_desc%'
+    app_og_img: "https://url-to-image.com"
+    app_contact_mail: "contact@publiko.fr"
+    app_noreply_mail: "noreply@publiko.fr"

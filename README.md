@@ -1,17 +1,44 @@
 # HTML5 Twig Boilerplate for Symfony
 
 ## Introduction
-> This Twig HTML5 boilerplate is designed to start a new Symfony project with a complete HTML5 skeleton who can be filled with defaults ENV variables for your app. Just setup you app variables in .env, and voilà !<br>
-You can surcharge your AbstractController with AbstractWebController to automatically inject defaults variables into your view (for example meta title, meta description, Open Graph values etc... ).
+> This Twig HTML5 boilerplate is designed to start a new Symfony project with a complete HTML5 skeleton who can be filled with defaults parameters for your app.<br>Just setup your parameters and globals in YAML config, and voilà !
 
 
 ## Setup
-> - Download or clone the repo into a temp folder
-> - Install Symfony the normal way into your new project folder
-> - copy the ENV variables from `.env.example` into your own `.env` file
-> - copy the file `base.html.twig` into your templates folder
-> - copy the file `AbstractWebController` into your Controller folder
-> - extends all your controllers who load this view from `AbstractWebController`
+- Copy the file `base.html.twig` into your templates folder
+- Setup your defaults parameters in `config/sevices.yaml`
+- Set the params as globals for Twig in `config/twig.yaml`
+
+```yaml
+# in config/services.yaml
+
+parameters:
+    app_lang: "fr"
+    app_name: "My App Name"
+    app_desc: "My App Desc"
+    app_author: "Publiko"
+    app_author_url: "https://www.publiko.fr"
+    app_og_title: '%app_name%'
+    app_og_desc: '%app_desc%'
+    app_og_img: "https://url-to-image.com"
+    app_contact_mail: "contact@publiko.fr"
+    app_noreply_mail: "noreply@publiko.fr"
+
+# ------------------------------------------
+
+#in config/twig.yaml
+
+twig:
+    globals :
+        app_lang: '%app_lang%'
+        app_name: '%app_name%'
+        app_desc: '%app_desc%'
+        app_author: '%app_author%'
+        app_author_url: '%app_author_url%'
+        app_og_title: '%app_og_title%'
+        app_og_desc: '%app_og_desc%'
+        app_og_img: '%app_og_img%'
+```
 
 
 ## Usage
@@ -31,52 +58,24 @@ Your ENV variables will now be injected by default into the base template.<br>
 ```
 
 ## Documentation
-> #### ENV variables
-> Automatically injected (from your .env file) by `AbstractWebController`:
 
-| ENV variable  | Twig tag              |
-|:--------------|:----------------------|
-| APP_LANG      | Lang in html tag      |
-| APP_NAME      | Meta Title            |
-| APP_DESC      | Meta Description      |
-| APP_AUTHOR    | Meta Author           |
-| APP_OG_TITLE  | OpenGraph Title       |
-| APP_OG_DESC   | OpenGraph Description |
-| APP_OG_IMG    | OpenGraph Image       |
-
-
-
-> #### PHP variables
+> #### Parameters
 > You can override all this variables by passing it to `render()` function
 
-| PHP variable   | Twig tag                        |
-|:---------------|:--------------------------------|
-| meta.lang      | Lang in html tag                |
-| meta.title     | Meta Title                      |
-| meta.desc      | Meta Description                |
-| meta.author    | Meta Author                     |
-| meta.canonical | Canonical URL                   |
-| meta.noindex   | Add no index, no follow tags    |
-| meta.og_title  | OpenGraph Title                 |
-| meta.og_desc   | OpenGraph Description           |
-| meta.og_image  | OpenGraph Image                 |
-| meta.og_url    | OpenGraph URL                   |
-| meta.og_type   | OpenGraph Type                  |
-
-
-
-> #### Defaults
-> Those variables are already defined in the Twig template in case you don't pass them<br>
-
-| Twig Tag      | Default value               |
-|---------------|:----------------------------|
-| Lang          | en                          |
-| Canonical URL | automatically generated     |
-| Favicon       | asset('img/favicon.png')    |
-| Apple Icon    | asset('img/apple-icon.png') |
-| OpenGraph URL | Canonical URL               |
-
-
+| PHP variable    | YAML param     | Description                   | Default                    |
+|:----------------|:---------------|:------------------------------|:---------------------------|
+| meta.lang       | app_lang       | Lang in html tag              | -                          |
+| meta.title      | app_name       | Meta Title / Name of your app | -                          |
+| meta.desc       | app_desc       | Meta Description              | -                          |
+| meta.author     | app_author     | Meta Author                   | -                          |
+| meta.author_url | app_author_url | Meta Author URL               | -                          |
+| meta.canonical  | -              | Canonical URL                 | automatically generated    |
+| meta.noindex    | -              | Add no-index & no-follow tags | disabled                   |
+| meta.og_title   | app_og_title   | OpenGraph Title               | app_name                   |
+| meta.og_desc    | app_og_desc    | OpenGraph Description         | app_desc                   |
+| meta.og_image   | app_og_image   | OpenGraph Image               | -                          |
+| meta.og_url     | -              | OpenGraph URL                 | meta.canonical / generated |
+| meta.og_type    | app_og_type    | OpenGraph Type                | website                    |
 
 
 >Feel free to contribute :)
