@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="{{ meta.lang | default('en') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- TITLE & DESCRIPTIONS -->
+    <title>{% block title %}{{meta.title}}{% endblock %}</title>
+    <meta name="description" content="{{meta.desc}}">
+    {% if meta.author is defined and not null %}
+        <meta name="author" content="{{meta.author}}"/>
+    {% endif %}
+
+    <!-- CANONICAL URL -->
+    {% if meta.canonical is defined and not null %}
+        {% set canonical = meta.canonical %}
+    {% else %}
+        {% set canonical = app.request.getSchemeAndHttpHost ~ app.request.baseUrl ~ app.request.pathInfo %}
+    {% endif %}
+    <link rel="canonical" href="{{canonical}}"/>
+
+    {% if meta.noindex is defined and not null %}
+        <meta name="robots" content="noindex,nofollow">
+        <meta name="googlebot" content="noindex,nofollow">
+    {% endif %}
+
+    <!-- FAVICON -->
+    <link rel="icon" href="{{ asset( 'img/favicon.png' ) }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset( 'img/apple-icon.png' )}}" type="image/png">
+
+    <!-- OPEN GRAPH CONTENT -->
+    <meta property="og:type" content="{{ meta.og_type | default('website') }}">
+    <meta property="og:url" content="{{ meta.og_url | default(canonical) }}">
+    {% if meta.og_image is defined and not null %}
+        <meta property="og:image" content="{{meta.og_image}}">
+    {% endif %}
+    {% if meta.og_title is defined and not null %}
+        <meta property="og:title" content="{{meta.og_title}}">
+    {% endif %}
+    {% if meta.og_desc is defined and not null %}
+        <meta property="og:desc" content="{{meta.og_desc}}">
+    {% endif %}
+
+    {#        <!-- PWA SETTINGS -->#}
+    {#        <link rel="manifest" href="site.webmanifest">#}
+    {#        <meta name="theme-color" content="#fafafa">#}
+
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+</head>
+<body>
+{% block body %}{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
+</html>
