@@ -1,0 +1,12 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+
+    globals :
+        app_lang: '%app_lang%'
+        app_name: '%app_name%'
+        app_desc: '%app_desc%'
+        app_author: '%app_author%'
+        app_author_url: '%app_author_url%'
+        app_og_title: '%app_og_title%'
+        app_og_desc: '%app_og_desc%'
+        app_og_img: '%app_og_img%'
